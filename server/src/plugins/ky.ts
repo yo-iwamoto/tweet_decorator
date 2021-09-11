@@ -1,7 +1,5 @@
 import kyModule from "https://cdn.skypack.dev/ky@0.28.5?dts";
-import "https://deno.land/x/dotenv@v3.0.0/load.ts";
-
-const TWITTER_API_TOKEN = Deno.env.get("TWITTER_API_TOKEN");
+import { TWITTER_API_TOKEN } from "../config/env.ts";
 
 export const ky = kyModule.create({
   headers: {
