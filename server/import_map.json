@@ -1,8 +1,0 @@
-{
-  "imports": {
-    "@/": "./src/",
-    "oak": "https://deno.land/x/oak@v9.0.0/mod.ts",
-    "dotenv": "https://deno.land/x/dotenv@v3.0.0/mod.ts",
-    "twitter-api-v2": "https://esm.sh/twitter-api-v2"
-  }
-}
