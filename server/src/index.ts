@@ -2,7 +2,6 @@ import { Application } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 import { logger } from "./middlewares/logger.ts";
 import { timing } from "./middlewares/timing.ts";
 import { router } from "./routes.ts";
-import "https://deno.land/x/dotenv@v3.0.0/mod.ts";
 
 const app = new Application();
 
