@@ -1,41 +1,26 @@
-import { useDeno } from 'aleph/react'
-import React from 'react'
-import Logo from '~/components/logo.tsx'
-import useCounter from '~/lib/useCounter.ts'
+import React from "react";
 
-export default function Home() {
-  const [count, isSyncing, increase, decrease] = useCounter()
-  const version = useDeno(() => Deno.version.deno)
-
+const Page: React.VFC = () => {
   return (
-    <div className="page">
-      <head>
-        <title>Hello World - Aleph.js</title>
-        <link rel="stylesheet" href="../style/index.css" />
-      </head>
-      <p className="logo"><Logo /></p>
-      <h1>Welcome to use <strong>Aleph.js</strong>!</h1>
-      <p className="links">
-        <a href="https://alephjs.org" target="_blank">Website</a>
-        <span></span>
-        <a href="https://alephjs.org/docs/get-started" target="_blank">Get Started</a>
-        <span></span>
-        <a href="https://alephjs.org/docs" target="_blank">Docs</a>
-        <span></span>
-        <a href="https://github.com/alephjs/aleph.js" target="_blank">Github</a>
-      </p>
-      <div className="counter">
-        <span>Counter:</span>
-        {isSyncing && (
-          <em>...</em>
-        )}
-        {!isSyncing && (
-          <strong>{count}</strong>
-        )}
-        <button onClick={decrease}>-</button>
-        <button onClick={increase}>+</button>
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div
+        className="py-8 px-8 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-6 sm:(py-4 space-y-0 space-x-6)"
+      >
+        <div className="text-center space-y-2 sm:text-left">
+          <div className="space-y-0.1">
+            <p className="text-lg text-black font-semibold">Aleph.js</p>
+            <p className="text-gray-500 font-medium">CSS Powered by Windi.</p>
+          </div>
+          <a
+            href="https://alephjs.org/docs/get-started"
+            className="inline-block px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:(text-white bg-purple-600 border-transparent) focus:(outline-none ring-2 ring-purple-600 ring-offset-2)"
+          >
+            Get started
+          </a>
+        </div>
       </div>
-      <p className="copyinfo">Built by Aleph.js in Deno {version}</p>
     </div>
-  )
-}
+  );
+};
+
+export default Page;
