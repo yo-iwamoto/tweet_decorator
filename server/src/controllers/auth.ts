@@ -10,6 +10,9 @@ import { buildOAuthHeader } from "../lib/buildOAuthHeader.ts";
 import { handleHttpError } from "../lib/handleHttpError.ts";
 import { HTTPError, ky } from "../plugins/ky.ts";
 
+/**
+ * return the authenticationURL for OAuth sigining
+ */
 const navigateSignin: RouterMiddleware = async (ctx) => {
   const header = buildOAuthHeader({
     url: "https://api.twitter.com/oauth/request_token",
@@ -28,9 +31,10 @@ const navigateSignin: RouterMiddleware = async (ctx) => {
     if (err instanceof HTTPError) handleHttpError(err);
   });
 
-  ctx.response.redirect(
-    `https://api.twitter.com/oauth/authenticate?oauth_token=${oauthToken}`,
-  );
+  ctx.response.body = {
+    authenticationURL:
+      `https://api.twitter.com/oauth/authenticate?oauth_token=${oauthToken}`,
+  };
 };
 
 const handleOauth: RouterMiddleware = async (_) => {};
