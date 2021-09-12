@@ -1,4 +1,4 @@
-# 🖌 tweet_decorator
+# 🖌 Tweet Decorator
 
 ### _Decorate your tweet behavior by hashtags!_
 
