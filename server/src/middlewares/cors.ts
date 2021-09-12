@@ -3,5 +3,5 @@ import { CORS_ALLOWED_ORIGINS } from "../config/env.ts";
 
 export const cors = oakCors({
   origin: CORS_ALLOWED_ORIGINS.split(","),
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "PATCH", "DELETE"],
 });
