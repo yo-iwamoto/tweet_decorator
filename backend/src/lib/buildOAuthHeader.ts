@@ -22,8 +22,8 @@ type Arg = {
 export const buildOAuthHeader = (
   { url, method, token, tokenSecret }: Arg,
 ): string => {
-  const nonce = cryptoRandomString({ length: 42, type: "base64" });
-  const timestamp = Date.now().toString().slice(0, 10);
+  const nonce = _randomBase64();
+  const timestamp = _timestamp();
 
   const encUrl = encodeOAuthUri(url);
 
@@ -72,7 +72,7 @@ const _genSigningKey = (tokenSecret: string): string => {
 };
 
 /**
- * @param key -> signing payload
+ * @param payload -> signing payload
  * @param key -> sigining key
  */
 const _sign = (payload: string, key: string) => {
@@ -81,3 +81,9 @@ const _sign = (payload: string, key: string) => {
   const signature = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
   return signature;
 };
+
+const _randomBase64 = (): string => {
+  return cryptoRandomString({ length: 42, type: "base64" });
+};
+
+const _timestamp = (): string => Date.now().toString().slice(0, 10);
