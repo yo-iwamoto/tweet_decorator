@@ -1,6 +1,6 @@
 import React, { ComponentType } from "react";
-import "./styles.css";
 import "https://esm.sh/tailwindcss/dist/tailwind.min.css";
+import "./styles.css";
 
 const App = (
   { Page, pageProps }: { Page: ComponentType<any>; pageProps: any },
