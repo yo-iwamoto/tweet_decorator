@@ -13,3 +13,6 @@ export const TWITTER_API_ACCESS_TOKEN = Deno.env.get(
 export const TWITTER_API_ACCESS_TOKEN_SECRET = Deno.env.get(
   "TWITTER_API_ACCESS_TOKEN_SECRET",
 ) as string;
+export const CORS_ALLOWED_ORIGINS = Deno.env.get(
+  "CORS_ALLOWED_ORIGINS",
+) as string;
