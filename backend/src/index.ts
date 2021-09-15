@@ -4,9 +4,7 @@ import { timing } from "./middlewares/timing.ts";
 import { cors } from "./middlewares/cors.ts";
 import { router } from "./routes.ts";
 
-const app = new Application();
-
-app
+new Application()
   .use(cors, logger, timing) // middlewares
   .use(router.routes(), router.allowedMethods()) //routes
   .listen({ port: 8000 }); // serve

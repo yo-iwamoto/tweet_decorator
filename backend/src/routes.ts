@@ -1,6 +1,7 @@
 import { Router } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 import * as auth from "./controllers/auth.ts";
 import * as hashtags from "./controllers/hashtags.ts";
+import { healthCheck } from "./controllers/healthcheck.ts";
 
 const router = new Router();
 
@@ -24,6 +25,7 @@ router
     "/hashtags",
     hashtagsRouter.routes(),
     hashtagsRouter.allowedMethods(),
-  );
+  )
+  .get("/health_check", healthCheck);
 
 export { router };
