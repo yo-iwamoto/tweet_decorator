@@ -4,7 +4,7 @@
 
 ## Example
 
-Not Functions yet
+No Functions yet
 
 ## Japanese
 

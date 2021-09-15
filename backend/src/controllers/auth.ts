@@ -1,7 +1,4 @@
-import {
-  Router,
-  RouterMiddleware,
-} from "https://deno.land/x/oak@v9.0.0/mod.ts";
+import { RouterMiddleware } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 import {
   TWITTER_API_ACCESS_TOKEN,
   TWITTER_API_ACCESS_TOKEN_SECRET,
@@ -37,11 +34,8 @@ const navigateSignin: RouterMiddleware = async (ctx) => {
   };
 };
 
-const handleOauth: RouterMiddleware = async (_) => {};
+const handleOAuth: RouterMiddleware = (ctx) => {
+  ctx.response.body = "Here will be a dashboard!";
+};
 
-const authRouter = new Router();
-authRouter
-  .get("/signin", navigateSignin)
-  .get("/callback", handleOauth);
-
-export { authRouter };
+export { handleOAuth, navigateSignin };
