@@ -6,8 +6,10 @@ import { healthCheck } from "./controllers/healthcheck.ts";
 const router = new Router();
 
 const authRouter = new Router()
-  .get("/signin", auth.signin)
-  .get("/callback", auth.handleCallback);
+  .get("/request", auth.request)
+  .get("/callback", auth.handleCallback)
+  .get("/signout", auth.signout)
+  .get("/retrieve", auth.retrieve);
 
 const hashtagsRouter = new Router()
   .get("/", hashtags.hashtagsIndex)

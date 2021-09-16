@@ -14,7 +14,7 @@ const headerParameters = {
   tokenSecret: TWITTER_API_ACCESS_TOKEN_SECRET,
 } as const;
 
-export class SigninService {
+export class RequestService {
   execute = async (): Promise<string> => {
     const header = buildOAuthHeader(headerParameters);
 

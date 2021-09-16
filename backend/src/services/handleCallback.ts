@@ -3,7 +3,6 @@ import { buildOAuthHeader } from "../lib/buildOAuthHeader.ts";
 import { handleHttpError } from "../lib/handleHttpError.ts";
 import { HTTPError, ky } from "../plugins/ky.ts";
 import { log } from "../plugins/tl_log.ts";
-import type { TwitterUserCredential } from "../types/credential.ts";
 
 type Arg = {
   token: string;
@@ -19,7 +18,9 @@ export class HandleCallbackService {
     this._verifier = arg.verifier;
   }
 
-  execute = async (): Promise<TwitterUserCredential> => {
+  execute = async (): Promise<
+    { accessToken: string; accessTokenSecret: string }
+  > => {
     const header = buildOAuthHeader({
       url: "https://api.twitter.com/oauth/access_token",
       method: "POST",
@@ -46,7 +47,6 @@ export class HandleCallbackService {
     const [accessToken, accessTokenSecret, userId] = text.map((t) =>
       t.split("=")[1]
     );
-    log.info(accessToken, accessTokenSecret);
 
     const authorizedHeader = buildOAuthHeader({
       url: "https://api.twitter.com/1.1/account/verify_credentials.json",
@@ -65,8 +65,7 @@ export class HandleCallbackService {
           log.error(err);
         }
       });
-    log.info(credential);
 
-    return credential as TwitterUserCredential;
+    return { accessToken, accessTokenSecret };
   };
 }
