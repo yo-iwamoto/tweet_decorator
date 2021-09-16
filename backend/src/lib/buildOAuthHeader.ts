@@ -2,7 +2,7 @@ import { HmacSha1 } from "https://deno.land/std@0.106.0/hash/sha1.ts";
 import { cryptoRandomString } from "https://deno.land/x/crypto_random_string@1.1.0/cryptoRandomString.ts";
 import {
   TWITTER_API_CONSUMER_KEY,
-  TWITTER_API_CONSUMER_SECRET,
+  TWITTER_API_CONSUMER_KEY_SECRET,
 } from "../config/env.ts";
 import { encodeOAuthUri } from "./encode.ts";
 
@@ -11,6 +11,7 @@ type Arg = {
   method: "GET" | "POST";
   token: string;
   tokenSecret: string;
+  verifier?: string;
 };
 
 /**
@@ -20,7 +21,7 @@ type Arg = {
  * @returns already formatted Authorization header for OAuth1.0a
  */
 export const buildOAuthHeader = (
-  { url, method, token, tokenSecret }: Arg,
+  { url, method, token, tokenSecret, verifier }: Arg,
 ): string => {
   const nonce = _randomBase64();
   const timestamp = _timestamp();
@@ -34,6 +35,7 @@ export const buildOAuthHeader = (
     "oauth_token": token,
     "oauth_nonce": nonce,
     "oauth_timestamp": timestamp,
+    "oauth_verifier": verifier ?? "",
   };
 
   // format encoded keys and valuess
@@ -66,7 +68,7 @@ export const buildOAuthHeader = (
  * @param tokenSecret -> Developer's consumer secret
  */
 const _genSigningKey = (tokenSecret: string): string => {
-  const encConsumerSecret = encodeOAuthUri(TWITTER_API_CONSUMER_SECRET);
+  const encConsumerSecret = encodeOAuthUri(TWITTER_API_CONSUMER_KEY_SECRET);
   const encTokenSecret = encodeOAuthUri(tokenSecret);
   return `${encConsumerSecret}&${encTokenSecret}`;
 };
