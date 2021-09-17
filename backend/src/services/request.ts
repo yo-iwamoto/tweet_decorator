@@ -14,16 +14,19 @@ const headerParameters = {
   tokenSecret: TWITTER_API_ACCESS_TOKEN_SECRET,
 } as const;
 
+type Return = {
+  oauthToken: string;
+  oauthTokenSecret: string;
+};
+
 export class RequestService {
-  execute = async (): Promise<string> => {
+  execute = async (): Promise<Return> => {
     const header = buildOAuthHeader(headerParameters);
 
-    const oauthToken = await ky.post("oauth/request_token", {
+    const res = await ky.post("oauth/request_token", {
       headers: { Authorization: header },
     })
-      .then(async (res) => {
-        return (await res.text()).split("&")[0].split("=")[1];
-      })
+      .then(async (res) => res.text())
       .catch((err) => {
         if (err instanceof HTTPError) {
           handleHttpError(err);
@@ -32,8 +35,11 @@ export class RequestService {
         }
       });
 
-    const authorizeURL =
-      `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
-    return authorizeURL;
+    if (!res) throw new Error();
+
+    const text = res.split("&");
+    const [oauthToken, oauthTokenSecret] = text.map((t) => t.split("=")[1]);
+
+    return { oauthToken, oauthTokenSecret };
   };
 }

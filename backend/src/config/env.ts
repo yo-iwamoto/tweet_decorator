@@ -16,3 +16,4 @@ export const CORS_ALLOWED_ORIGINS = Deno.env.get(
 export const SUPABASE_SECRET_KEY = Deno.env.get(
   "SUPABASE_SECRET_KEY",
 ) as string;
+export const COOKIE_STORE_KEY = Deno.env.get("COOKIE_STORE_KEY") as string;
