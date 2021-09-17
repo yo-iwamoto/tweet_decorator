@@ -13,7 +13,6 @@ export const TWITTER_API_ACCESS_TOKEN_SECRET = Deno.env.get(
 export const CORS_ALLOWED_ORIGINS = Deno.env.get(
   "CORS_ALLOWED_ORIGINS",
 ) as string;
-export const DB_USER = Deno.env.get("DB_USER") as string;
-export const DB_HOST = Deno.env.get("DB_HOST") as string;
-export const DB_PASS = Deno.env.get("DB_PASS") as string;
-export const DB_NAME = Deno.env.get("DB_NAME") as string;
+export const SUPABASE_SECRET_KEY = Deno.env.get(
+  "SUPABASE_SECRET_KEY",
+) as string;
