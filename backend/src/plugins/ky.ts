@@ -1,4 +1,4 @@
-import kyModule, { HTTPError } from "https://cdn.skypack.dev/ky@0.28.5?dts";
+import kyModule, { HTTPError } from "https://esm.sh/ky@0.28.5";
 
 export { HTTPError };
 

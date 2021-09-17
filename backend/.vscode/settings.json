@@ -1,5 +1,9 @@
 {
   "deno.enable": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": false,
+    "https://esm.sh": false
+  }
 }
